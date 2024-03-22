@@ -19,39 +19,39 @@ import java.util.stream.IntStream;
  * <h2>Opdracht 1 (Non-Suspending Breakpoint Logging)</h2>
  * Voer de code eenmaal uit, en observeer de validatiefouten in de logging.
  * Je wil de waarden loggen waarvoor de validatiefouten optreden, zonder iedere keer de applicatie te pauzeren.
- * <ol><li>Plaats een non-suspending breakpoint binnen {@code valideerOppervlak} die enkel het oppervlak logt
+ * <ol><li>Plaats een non-suspending breakpoint binnen {@link #valideerOppervlak(Figuur)} die enkel het oppervlak logt
  *  als deze invalide is. </li></ol>
  * <p>
  * <h2>Opdracht 2 (Data Flow To Here)</h2>
  * Verwijder de vorige breakpoint.
- * Je bent benieuwd welke paden een {@code figuur} allemaal kan bewandelen voordat het bij {@code
- * valideerOppervlak} komt.
+ * Je bent benieuwd welke paden een {@code figuur} allemaal kan bewandelen voordat het bij {@link #valideerOppervlak(Figuur)} komt.
  * <ol><li>Gebruik <i>Data Flow To Here</i> om erachter te komen via welke paden een {@code figuur}
- * `Figuur` vanaf instantiatie tot deze functie komt.</li></ol>
+ * `Figuur` vanaf instantiatie tot het argument van {@link #valideerOppervlak(Figuur)} komt.</li></ol>
  * <dl>
  *     <dt>Hint 1</dt>
- *     <dd>Plaats de cursor op de variabele `figuur` voordat je Data Flow To Here aanroept.</dd>
+ *     <dd>Plaats de cursor op de variabele `figuur` binnen de {@link #valideerOppervlak(Figuur)} voordat je Data Flow To Here 
+ *     aanroept.</dd>
  *     <dt>Hint 2</dt>
  *     <dd>De <i>Data Flow To Here</i>-functionaliteit kan je makkelijk aanroepen door 2x op shift te drukken</dd>
  * </dl>
  * <p>
  * <h2>Opdracht 3 (Breakpoint als trigger voor een ander breakpoint)</h2>
  * Je hebt in Opdracht 1 gezien dat er validatiefouten optreden door een negatief oppervlak.
- * In opdracht 2 heb je gezien dat {@code valideerOppervlak} 2x aangeroepen wordt bij instantiatie,
- *  en 1x nadat de negatieve oppervlaktes eruit gefilterd zijn.
+ * In opdracht 2 heb je gezien dat {@link #valideerOppervlak(Figuur)} 2x aangeroepen wordt bij instantiatie,
+ *  en 1x nadat de negatieve oppervlaktes eruit gefilterd zijn (vanuit de {@link #main(String[])}-methode.
  * Je ziet aan de logging niet of de validatiefouten enkel optreden bij instantiatie,
- *  of ook nog na het filteren.
+ *  of ook nog nadat de figuren gefilterd zijn door {@link #main(String[])}.
  *  <ol>
  *      <li>Maak van de non-suspending breakpoint op de validatiefout een (regulier) suspending breakpoint.</li>
- *      <li>Plaats een non-suspending breakpoint op de filter-statement in de {@code main()}-methode.</li>
+ *      <li>Plaats een non-suspending breakpoint op de filter-statement in de {@link #main(String[])}-methode.</li>
  *      <li>Voeg een voorwaarde toe aan de suspending breakpoing op de validatiefout,
- *          zodat deze enkel geactiveerd wordt nadat de lijst met figuren gefilterd zijn binnen {@code main()}</li>
+ *          zodat deze enkel geactiveerd wordt nadat de lijst met figuren gefilterd zijn binnen {@link #main(String[])}}</li>
  *      <li>Pauzeert de applicatie? Dan is de fout nog aanwezig na het filteren.
- *      Loopt de applicatie door? Dan zit de fout in {@code zetGrootOppervlak} of {@code zetKleinOppervlak}</li>
+ *      Loopt de applicatie door? Dan zit de fout in {@link #zetGrootOppervlak(Figuur)} of {@link #zetKleinOppervlak(Figuur)}</li>
  *  </ol>
  * <p>
  * <h2>Opdracht 4 (Conditional Breakpoint)</h2>
- * Je hebt gezien dat de validatiefout optreedt vanuit {@code zetGrootOppervlak} of {@code zetKleinOppervlak}.
+ * Je hebt gezien dat de validatiefout optreedt vanuit {@link #zetGrootOppervlak(Figuur)} of {@link #zetKleinOppervlak(Figuur)}.
  * Ook heb je gezien dat de validatiefout veroorzaakt wordt door een negatief oppervlak.
  * <ol>
  *     <li>Verwijder de voorgaande breakpoints.</li>
@@ -61,12 +61,12 @@ import java.util.stream.IntStream;
  * <li>Weet je nu welke methode een oppervlak instelt die negatief kan zijn?</li>
  * </ol>
  * <h2>Opdracht 5 (Inline Watch)</h2>
- * Je weet dat de fout zit in {@code zetGrootOppervlak}. Iedere keer dat je breakpoint op de return binnen
- * {@code zetGrootOppervlak} geactiveerd wordt, zie je een representatie op de argumenten,
+ * Je weet dat de fout zit in {@link #zetGrootOppervlak(Figuur)}. Iedere keer dat je breakpoint op de return binnen
+ * {@link #zetGrootOppervlak(Figuur)} geactiveerd wordt, zie je een representatie op de argumenten,
  * bijvoorbeeld Vierkant@1241 of Cirkel@1534.
  * Aangezien we enkel in de area geinteresseerd zijn, is deze informatie niet erg handig.
  * <ol>
- *     <li>Verwijder de conditional breakpoint die (toch) nooit geactiveerd wordt op {@code zetKleinOppervlak}.</li>
+ *     <li>Verwijder de conditional breakpoint die (toch) nooit geactiveerd wordt op {@link #zetKleinOppervlak(Figuur)}.</li>
  *     <li>Configureer een inline watch-expressie (naast de methode), waarmee je het oppervlak ziet van de figuur,
  *          iedere keer dat je breakpoint geactiveerd wordt.</li>
  *     <li>Klik een paar keer door, zie je dat de waardes veranderen, iedere keer dat je breakpoint af gaat?</li>
@@ -80,7 +80,7 @@ import java.util.stream.IntStream;
  * We gaan dit probleem oplossen door dataframes terug te rollen.
  * <ol>
  *     <li>Debug je applicatie nogmaals,
- *     zodat je conditional breakpoint op {@code zetGrootOppervlak} geactiveerd wordt</li>
+ *     zodat je conditional breakpoint op {@link #zetGrootOppervlak(Figuur)} geactiveerd wordt</li>
  *     <li>Binnen je IDE zie je in het debug-venster onder 'Threads & Variables' een lijst van dataframes.</li>
  *     <li>Klik op de bovenste dataframe op het 'terug'-pijltje (of DELETE) om deze dataframe terug te rollen.</li>
  *     <li>Klik vervolgens op 'Step Into' (of F7) om weer in de functie te stappen.
@@ -93,7 +93,7 @@ import java.util.stream.IntStream;
  * Ook hier zie je een referentie. Je kan een inline watch toevoegen zoals je dat in Opdracht 5 deed, maar dit is
  * onhandig. Je moet dit dan voor iedere statement instellen. Een Renderer is hier beter geschikt voor.
  * <ol>
- *     <li>Ga weer naar het begin van {@code zetGrootOppervlak} voor een negatief oppervlak
+ *     <li>Ga weer naar het begin van {@link #zetGrootOppervlak(Figuur)} voor een negatief oppervlak
  *     zoals je dat eerder gedaan hebt.</li>
  *     <li>Klik op figuur, create renderer, en selecteer <i>When rendering a node, use following expression</i></li>
  *     <li>Vul hier een expressie in zodat een {@code Figuur} gerendert wordt als een oppervlak</li>
@@ -106,9 +106,9 @@ import java.util.stream.IntStream;
  * zodat je breakpoint alleen geactiveerd wordt als deze aangeroepen wordt vanuit een specifieke methode.
  * <ol>
  *     <li>Verwijder alle oude breakpoints.</li>
- *     <li>Plaats een breakpoint op {@code valideerOppervlak}</li>
+ *     <li>Plaats een breakpoint op {@link #valideerOppervlak(Figuur)}</li>
  *     <li>Voeg een voorwaarde aan dit breakpoint toe onder <i>Caller Filters</i>,
- *     zodat dit breakpoint alleen geactiveerd wordt vanuit {@code zetGrootOppervlak}.</li>
+ *     zodat dit breakpoint alleen geactiveerd wordt vanuit {@link #zetGrootOppervlak(Figuur)}.</li>
  *     <li>Let op, gebruik niet het trucje van een Non-Suspending breakpoint!
  *     Gebruik <i>alleen</i> het breakpoint met een Caller Filter.</li>
  * </ol>
