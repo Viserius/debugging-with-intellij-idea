@@ -1,12 +1,10 @@
 package org.example;
 
-import org.jetbrains.annotations.Async;
 
 import java.util.ArrayList;
 import java.util.List;
 
 class Task {
-    @Async.Execute
     public void run(){
         System.out.println("Running: " + this);
     }
@@ -16,7 +14,7 @@ public class CustomAsync {
 
     List<Task> tasks = new ArrayList<>();
 
-    public void submitTask(@Async.Schedule Task task){
+    public void submitTask(Task task){
         System.out.println("Submitted: " + task);
         tasks.add(task);
     }

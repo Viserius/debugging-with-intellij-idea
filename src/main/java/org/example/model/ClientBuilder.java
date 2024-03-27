@@ -1,7 +1,5 @@
 package org.example.model;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.time.LocalDate;
 
 public class ClientBuilder {
@@ -51,7 +49,6 @@ public class ClientBuilder {
     this.dob = dob;
   }
 
-  @NotNull
   public Client build() {
     Client client = new Client(myFirstName, myLastName, myCompany, myTwitter);
     if (dob != null) {

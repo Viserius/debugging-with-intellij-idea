@@ -1,7 +1,6 @@
 package opdrachten.stroom;
 
 import opdrachten.MeanderendeStroom;
-import org.jetbrains.annotations.NotNull;
 
 import java.lang.reflect.Method;
 import java.util.Arrays;
@@ -13,7 +12,6 @@ public class Zijstroom {
 
     private static final MeanderendeStroom.TheoretischeKnelpunten lagerGelegenConstructies = new LagerGelegenConstructies();
 
-    @NotNull
     public static IntPredicate weerspiegeling() {
         return c -> {
             try {

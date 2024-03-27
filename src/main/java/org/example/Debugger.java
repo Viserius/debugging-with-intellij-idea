@@ -1,7 +1,5 @@
 package org.example;
 
-import org.jetbrains.annotations.Debug.Renderer;
-
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.Random;
